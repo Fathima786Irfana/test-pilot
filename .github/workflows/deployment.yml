@@ -1,0 +1,39 @@
+name: Run Test Pilot CLI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-cli-tests:
+    runs-on: ubuntu-latest
+    env:
+      RUNNING_MODE: UI
+      DELAY_UI_SHORT: 500
+      DELAY_UI_MEDIUM: 1000
+      DELAY_UI_LONG: 1500
+      DELAY_CLI_SHORT: 400
+      DELAY_CLI_MEDIUM: 800
+      DELAY_CLI_LONG: 1000
+      LOGIN_EMAIL: ${{ secrets.LOGIN_EMAIL }}
+      LOGIN_PASSWORD: ${{ secrets.LOGIN_PASSWORD }}
+      TEST_LAB: TL-0001-Address Test Lab
+      HOST_URL: ${{ secrets.HOST_URL }}
+      TARGET_URL: ${{ secrets.TARGET_URL }}
+      HOST_KEY: ${{ secrets.HOST_KEY }}
+      TARGET_KEY: ${{ secrets.TARGET_KEY }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Clone lens-test-pilot-config repo
+        run: git clone -b develop https://github.com/lmnaslimited/lens-test-pilot-config.git
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run CLI test
+        run: npm run cli_test
+        working-directory: lens-test-pilot-config
