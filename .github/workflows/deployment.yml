@@ -6,6 +6,7 @@ on:
 jobs:
   run-cli-tests:
     runs-on: ubuntu-latest
+
     env:
       RUNNING_MODE: UI
       DELAY_UI_SHORT: 500
@@ -16,7 +17,6 @@ jobs:
       DELAY_CLI_LONG: 1000
       LOGIN_EMAIL: ${{ secrets.LOGIN_EMAIL }}
       LOGIN_PASSWORD: ${{ secrets.LOGIN_PASSWORD }}
-      TEST_LAB: TL-0001-Address Test Lab
       HOST_URL: ${{ secrets.HOST_URL }}
       TARGET_URL: ${{ secrets.TARGET_URL }}
       HOST_KEY: ${{ secrets.HOST_KEY }}
@@ -28,6 +28,10 @@ jobs:
 
       - name: Clone lens-test-pilot-config repo
         run: git clone -b develop https://github.com/lmnaslimited/lens-test-pilot-config.git
+
+      - name: Read TEST_LAB value from file
+        id: read_testlab
+        run: echo "TEST_LAB=$(cat ci/testLab.txt)" >> $GITHUB_ENV
 
       - name: Use Node.js 20
         uses: actions/setup-node@v4
