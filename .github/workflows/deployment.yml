@@ -39,5 +39,7 @@ jobs:
           node-version: 20
 
       - name: Run CLI test
-        run: npm run cli_test
+        run: |
+          npm i
+          npm run cli_test
         working-directory: lens_ai_test_pilot
