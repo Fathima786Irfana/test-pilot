@@ -33,6 +33,13 @@ jobs:
         id: read_testlab
         run: echo "TEST_LAB=$(cat ci/testLab.txt)" >> $GITHUB_ENV
 
+      - name: Skip if testLab.txt is empty
+        run: |
+          if [ ! -s ci/testLab.txt ]; then
+            echo "No Test Lab for this deployment. Skipping CLI tests."
+            exit 0
+          fi
+
       - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
