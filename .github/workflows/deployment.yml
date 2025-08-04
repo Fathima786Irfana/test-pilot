@@ -39,7 +39,7 @@ jobs:
       - name: Stop job if no test lab found
         if: steps.read_testlab.outputs.is_empty == 'true'
         run: |
-          echo "✅ No Test Lab for this deployment. Skipping CLI tests."
+          echo "No Test Lab for this deployment. Skipping CLI tests."
           exit 0
 
       - name: Use Node.js 20
