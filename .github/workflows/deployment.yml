@@ -34,13 +34,20 @@ jobs:
         run: |
           TEST_LAB=$(cat ci/testLab.txt)
           echo "TEST_LAB=$TEST_LAB" >> $GITHUB_ENV
-          echo "is_empty=$([ -z \"$TEST_LAB\" ] && echo true || echo false)" >> $GITHUB_OUTPUT
+          if [ -z "$TEST_LAB" ]; then
+            echo "is_empty=true" >> $GITHUB_ENV
+            echo "is_empty=true" >> $GITHUB_OUTPUT
+          else
+            echo "is_empty=false" >> $GITHUB_ENV
+            echo "is_empty=false" >> $GITHUB_OUTPUT
+          fi
+        shell: bash
 
       - name: Stop job if no test lab found
         if: steps.read_testlab.outputs.is_empty == 'true'
         run: |
           echo "No Test Lab for this deployment. Skipping CLI tests."
-          exit 0
+        shell: bash
 
       - name: Use Node.js 20
         if: steps.read_testlab.outputs.is_empty != 'true'
