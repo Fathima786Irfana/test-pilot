@@ -7,8 +7,4 @@
 # To get the document, we use the format "Document = Doctype."
 # To update the document, we use the format "document/doctype."
 # Single Document = Print Settings
-document/Design Configuration
-document/Factory
-document/Factory/NEU.json
-document/Item Group
-document/singleDocument/Quotation Presets.json
+
