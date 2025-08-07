@@ -12,7 +12,7 @@
     "insert_after": "item_group",
     "length": 0,
     "link_filters": null,
-    "fieldtype": "Data",
+    "fieldtype": "Select",
     "precision": "",
     "hide_seconds": 0,
     "hide_days": 0,

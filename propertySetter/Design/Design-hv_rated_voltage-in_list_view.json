@@ -10,7 +10,7 @@
   "module": null,
   "property": "in_list_view",
   "property_type": "Check",
-  "value": "0",
+  "value": "1",
   "default_value": null,
   "_user_tags": null,
   "_comments": null,

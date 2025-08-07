@@ -10,7 +10,7 @@
     {
       "docstatus": 0,
       "idx": 1,
-      "item_template": "DOTML",
+      "item_template": "DOTMLT",
       "parent": "NEU",
       "parentfield": "item_template",
       "parenttype": "Factory",
